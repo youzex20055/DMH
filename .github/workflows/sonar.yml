@@ -3,21 +3,19 @@ name: SonarQube Analysis
 on:
   push:
     branches:
-      master
+      - master
 
 jobs:
   sonarqube:
     runs-on: self-hosted
     steps:
-      
-name: Check out code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-      
-name: Run SonarQube Scanner
-      run: |
-        sonar-scanner \
-        -Dsonar.projectKey=Tp_sonar \
-        -Dsonar.sources=index.html \
-        -Dsonar.host.url=http://localhost:9000/ \
-        -Dsonar.login=sqp_3f5756e0f2cb8de075f64ab87f159cb22a4062f9
+      - name: Run SonarQube Scanner
+        run: |
+          sonar-scanner \
+          -Dsonar.projectKey=Tp_sonar \
+          -Dsonar.sources=index.html \
+          -Dsonar.host.url=http://localhost:9000/ \
+          -Dsonar.login=sqp_3f5756e0f2cb8de075f64ab87f159cb22a4062f9
