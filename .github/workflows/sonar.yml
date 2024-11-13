@@ -3,12 +3,12 @@ name: Build
 on:
   push:
     branches:
-      - master  # Ensure this is the correct branch name
+      - master  # Or your desired branch
 
 jobs:
   build:
-    name: Build and analyze
-    runs-on: ubuntu-latest
+    name: Build and analyze with SonarQube
+    runs-on: [self-hosted, linux]  # This tells GitHub to use the self-hosted runner (you can use tags for filtering)
 
     steps:
       # Step 1: Checkout the code from the repository
