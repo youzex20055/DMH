@@ -3,32 +3,27 @@ name: SonarQube Analysis
 on:
   push:
     branches:
-      
-master
+      - master
 
 jobs:
   sonarqube:
     runs-on: self-hosted
     steps:
-      
-name: Check out code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-      
-name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-name: Install dependencies
-run: npm install
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-      
-name: Run SonarQube Scanner
-      env:
-        SONAR_TOKEN: ${{ sqp_3f5756e0f2cb8de075f64ab87f159cb22a4062f9 }}
-      run: |
-        sonar-scanner \
-        -Dsonar.projectKey=Tp_sonar \
-        -Dsonar.sources=. \
-        -Dsonar.host.url=http://localhost:9000/ \
-        -Dsonar.login=sqp_3f5756e0f2cb8de075f64ab87f159cb22a4062f9
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run SonarQube Scanner
+        run: |
+          sonar-scanner \
+          -Dsonar.projectKey=Tp_sonar \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=http://localhost:9000 \
+          -Dsonar.login=sqp_3f5756e0f2cb8de075f64ab87f159cb22a4062f9
