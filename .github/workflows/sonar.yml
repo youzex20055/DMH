@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - name: Check out code
         uses: actions/checkout@v4
 
-      # Step 2: Run SonarQube Scan
       - name: Run SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v3
         env:
