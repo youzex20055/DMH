@@ -1,36 +1,22 @@
-name: Build
+name: SonarQube Scan
 
 on:
   push:
     branches:
-      - master  # Or your desired branch
+      - master
 
 jobs:
-  build:
-    name: Build and analyze with SonarQube
-    runs-on: [self-hosted, linux]  # This tells GitHub to use the self-hosted runner (you can use tags for filtering)
+  sonar-scanner:
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code from the repository
-      - name: Checkout code
+      # Step 1: Checkout the code
+      - name: Check out code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      # Step 2: Run SonarQube scan
-      - name: SonarQube scan
+      # Step 2: Run SonarQube Scan
+      - name: Run SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v3
-        with:
-          # You can provide additional SonarQube properties if needed
-          # sonarscanner-options: >
-          #   -Dsonar.someProperty=value
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-      # Optional: Fail the job if the SonarQube Quality Gate fails
-      # Uncomment the following lines to fail the job if the Quality Gate is red
-      # - uses: sonarsource/sonarqube-quality-gate-action@master
-      #   timeout-minutes: 5
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
