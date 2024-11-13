@@ -3,8 +3,7 @@ name: SonarQube Analysis
 on:
   push:
     branches:
-      
-master
+      master
 
 jobs:
   sonarqube:
