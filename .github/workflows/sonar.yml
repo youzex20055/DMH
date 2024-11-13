@@ -25,10 +25,10 @@ run: npm install
       
 name: Run SonarQube Scanner
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_TOKEN: ${{ sqp_3f5756e0f2cb8de075f64ab87f159cb22a4062f9 }}
       run: |
         sonar-scanner \
         -Dsonar.projectKey=Tp_sonar \
         -Dsonar.sources=. \
         -Dsonar.host.url=http://localhost:9000/ \
-        -Dsonar.login=sqa_ad1c2026b3157229f7e31a584e4f1802b988ce5b
+        -Dsonar.login=sqp_3f5756e0f2cb8de075f64ab87f159cb22a4062f9
